@@ -1,0 +1,45 @@
+{% extends 'shop_app\base.html' %}
+
+{% block content %}
+<h1>Cart</h1>
+
+{% if object_list %}
+<table>
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in object_list %}
+    {% for item in order.order_items.all %}
+    <tr>
+        <td>{{ item.product.title }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.total_price }}</td>
+        <td>
+            <a href="{% url 'shop_app:update_quantity' item.pk %}" class="btn btn-primary">Update</a>
+            <a href="{% url 'shop_app:delete_order_item' item.pk %}" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="3">Total:</td>
+        <td>{{ order.total_price }}</td>
+    </tr>
+    {% endfor %}
+    </tfoot>
+</table>
+<a href="{% url 'shop_app:checkout' %}" class="btn btn-success">Proceed to Checkout</a>
+
+
+{% else %}
+<p>Your cart is empty.</p>
+{% endif %}
+{% endblock %}

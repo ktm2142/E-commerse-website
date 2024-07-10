@@ -1,0 +1,18 @@
+{% extends 'shop_app/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-4">User List</h1>
+    <div class="row">
+        {% for user in users %}
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'admin_conversation' user_id=user.id %}" class="card {% if user.has_unread_messages %}bg-info{% endif %}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ user.username }}</h5>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

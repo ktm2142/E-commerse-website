@@ -1,0 +1,8 @@
+{% extends 'shop_app/base.html' %}
+
+{% block content %}
+<h1>Checkout Completed</h1>
+<p>Thank you for your order!</p>
+<button class="btn btn-primary"><a href="{% url 'shop_app:home' %}" style="color: white; text-decoration: none;">Continue Shopping</a></button>
+<button class="btn btn-primary"><a href="{% url 'registration:user_info' %}" style="color: white; text-decoration: none;">Check Order status</a></button>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'shop_app/base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-4">Admin Dashboard</h1>
+    <a href="{% url 'admin_user_list' %}">Admin Conversation</a>
+</div>
+{% endblock %}

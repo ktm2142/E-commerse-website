@@ -1,0 +1,10 @@
+{% extends 'shop_app/base.html' %}
+
+{% block content %}
+    <h2>Are you sure you want to delete "{{ order_item.product.title }}"?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'shop_app:order_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

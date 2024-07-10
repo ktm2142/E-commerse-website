@@ -1,0 +1,36 @@
+{% extends 'shop_app/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-2 mt-4 mb-4">
+        <ul class="list-group">
+            {% for category in categories %}
+            <li class="list-group-item">
+                <a href="{% url 'shop_app:category_detail' category.pk %}"
+                   class="text-decoration-none text-dark d-block fs-5 fw-bold">
+                    {{ category.title }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="col-md-8 offset-md-1 text-center">
+        <div class="col-md-12">
+            <h1 class="display-4">Welcome to My Store!</h1>
+            <p class="lead">Discover a wide range of high-quality products at competitive prices.</p>
+            <hr class="my-4">
+            <p>At My Store, we are dedicated to providing you with the best online shopping experience. Whether you're
+                looking for the latest fashion trends, top-notch electronics, or unique home decor, we've got you
+                covered.</p>
+            <p>With our user-friendly website and secure payment options, shopping has never been easier. Plus, our
+                exceptional customer service ensures that you'll be satisfied with every purchase.</p>
+            <p>Start exploring our extensive collection of products today and find exactly what you need. Happy
+                shopping!</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

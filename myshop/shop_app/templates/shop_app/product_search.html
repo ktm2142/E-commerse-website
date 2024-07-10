@@ -1,0 +1,21 @@
+{% extends 'shop_app/base.html' %}
+
+{% block content %}
+
+
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+
+{% if products %}
+    <h2>Search results for "{{ query }}"</h2>
+    <ul>
+        {% for product in products %}
+            <li><a href="{% url 'shop_app:product_detail' pk=product.pk %}">{{ product.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% elif query %}
+    <p>No results found for "{{ query }}".</p>
+{% endif %}
+
+{% endblock %}

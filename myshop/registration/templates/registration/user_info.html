@@ -1,0 +1,49 @@
+{% extends 'shop_app/base.html' %}
+
+{% block title %}User Info{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-4">User info</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Personal Information</h3>
+            {% if user.is_authenticated %}
+            <p>Username: {{ user.username }}</p>
+            <p>First name: {{ user.userprofile.first_name }}</p>
+            <p>Last name: {{ user.userprofile.last_name }}</p>
+            <p>Email: {{ user.userprofile.email }}</p>
+            <p>Phone number: {{ user.userprofile.phone_number }}</p>
+            <p>City: {{ user.userprofile.city }}</p>
+            <p>Address: {{ user.userprofile.address }}</p>
+            <a href="{% url 'registration:update_user_info' %}" class="btn btn-primary">Edit Info</a>
+            {% else %}
+            <p>No user information available.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <a href="{% url 'user_conversation' %}" class="btn btn-primary">Conversation</a>
+            <h3>Order History</h3>
+            {% if completed_orders %}
+            <ul>
+                {% for order in completed_orders %}
+                <li>
+                    <a href="{% url 'shop_app:order_details' order.id %}">
+                        <h5>Order #{{ order.id }}:</h5>
+                        <p>Total: {{ order.total_price }}</p>
+                        <p>Items: {{ order.order_items.count }}</p>
+                    </a>
+                    {% if order.shipped %}
+                    <p class="text-success">Your order is shipped</p>
+                    {% else %}
+                    <p class="text-warning">Your order in progress</p>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>You don't have any orders.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

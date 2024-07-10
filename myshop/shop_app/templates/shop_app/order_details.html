@@ -1,0 +1,39 @@
+{% extends 'shop_app/base.html' %}
+
+{% block content %}
+<h1>Order #{{ object.id }}</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in object.order_items.all %}
+    <tr>
+        <td>{{ item.product.title }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.total_price }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="3">Total:</td>
+        <td>{{ object.total_price }}</td>
+    </tr>
+    </tfoot>
+</table>
+<div class="mt-4">
+    {% if object.shipped %}
+        <p class="text-success text-uppercase font-weight-bold">Your order is shipped</p>
+    {% else %}
+        <p class="text-warning text-uppercase font-weight-bold">Your order in progress</p>
+    {% endif %}
+</div>
+{% endblock %}
